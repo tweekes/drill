@@ -5,6 +5,7 @@ import { CatalogService } from './catalog.service';
   template: `
     <a routerLink="/setup">Setup</a>
     <a routerLink="/catalog">Catalog</a>
+    <router-outlet> </router-outlet>
     `,
 })
 export class AppComponent {

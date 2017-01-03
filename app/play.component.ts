@@ -4,6 +4,7 @@ import { Location }                 from '@angular/common';
 import { CatalogService} from './catalog.service';
 import { PlayList, PlayItem } from './vo/play-list';
 import 'rxjs/add/operator/switchMap';
+import * as _ from "underscore";
 
 @Component({
   selector: 'play',
@@ -45,6 +46,7 @@ export class PlayComponent implements OnInit {
 
   next(): void {
     this.currentPlayItem++;
+    this.currentPlayItem = (this.currentPlayItem >= this.playItems.length ) ? 0 : this.currentPlayItem;
   }
 
   // See https://angular.io/docs/ts/latest/guide/router.html
@@ -52,6 +54,7 @@ export class PlayComponent implements OnInit {
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
     this.playList = this.catalogService.getPlayList(id);
+    this.playItems = _.shuffle(this.playList.items) as PlayItem[];
     this.currentPlayItem = 0;
     this.action = "none!"
 
