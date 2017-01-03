@@ -4,7 +4,11 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Catalog }  from './vo/catalog';
 import { PlayList, PlayItem }  from './vo/play-list';
+import { AudioDetails } from './vo/audio-details';
+import * as _ from "underscore";
+// import { BufferLoader } from "./vendorjs/buffer-loader.js";
 
+declare var BufferLoader: any;
 
 // The highest level is a Catalog list.
 // A Catalog list constains a list of Catalogs
@@ -20,6 +24,9 @@ export class CatalogService {
   private catalogList : Catalog[] = [];
   private headers = new Headers({'Content-Type': 'application/json'});
   private url = "api/catalog";
+  private mp3TitlesList : string [];
+  private preloadedAudios : AudioBuffer[];
+  private context : AudioContext;
   constructor(private http: Http) { }
 
   updateCatalogList() : boolean {
@@ -29,6 +36,9 @@ export class CatalogService {
           let r = response.json().data as Catalog[];
           this.catalogList = r;
           let rr = this.catalogList[0] as Catalog;
+          this.mp3TitlesList = [];
+          this.preloadedAudios = [];
+          this.loadMp3sFromServer();
       })
       .catch(this.handleError);
       return true;
@@ -41,10 +51,9 @@ export class CatalogService {
       })
     } else {
 
-      return new Promise<Catalog>((resolve, reject) => {
-        reject("ERROR: Catalog List not updated from server.");
-      })
-
+    return new Promise<Catalog>((resolve, reject) => {
+      reject("ERROR: Catalog List not updated from server.");
+    })
 
       /* TODO: Remove later.
       return this.http.get(this.url)
@@ -60,9 +69,47 @@ export class CatalogService {
     }
   }
 
-  getPlayList(id: number): PlayList {
-    return this.catalogList[0].playLists.find(e => e.id === id);
+  loadMp3sFromServer() : void {
+    this.context = new AudioContext();
+    this.generateMp3List();
+
+    let bufferLoader = new BufferLoader(
+       this.context,
+       this.mp3TitlesList,
+       (bufferList:AudioBuffer[]) => {
+           this.preloadedAudios = bufferList;
+       }
+    );
+    bufferLoader.load();
   }
+
+  private generateMp3List() : void {
+      let cursor = 0;
+      let p = "audio/";
+      _.each(this.catalogList, (catalog) => {
+          _.each(catalog.playLists, (playList) => {
+            _.each(playList.items, (playItem) => {
+                if (playItem.whatMp3 != null) {
+                  this.mp3TitlesList.push(p + playItem.whatMp3.title + ".mp3");
+                  playItem.whatMp3.audioIndex = cursor++;
+                }
+                if (playItem.ansMp3 != null) {
+                  this.mp3TitlesList.push(p + playItem.ansMp3.title + ".mp3");
+                  playItem.ansMp3.audioIndex = cursor++;
+                }
+            })
+          })
+    })
+  }
+
+  getPlayListAndAudioDetails(id: number): AudioDetails {
+    let ad = new AudioDetails();
+    ad.playList = this.catalogList[0].playLists.find(e => e.id === id);
+    ad.audioContext = this.context;
+    ad.loadedAudio = this.preloadedAudios;
+    return ad;
+  }
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred'); // for demo purposes only
