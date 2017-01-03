@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { CatalogService } from './catalog.service';
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1>`,
+  template: `
+    <a routerLink="/setup">Setup</a>
+    <a routerLink="/catalog">Catalog</a>
+    `,
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent {
+  name = 'Drill';
+}
