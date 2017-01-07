@@ -1,0 +1,25 @@
+h4 {
+  position: relative;
+  text-align: center;
+}
+
+.play .answer .next {
+  padding-bottom: 1em;
+    max-height: 4em;
+}
+
+
+.play {
+  background-color: cyan;
+
+}
+
+.answer {
+background-color: yellow;
+
+}
+
+.next {
+background-color: green;
+
+}

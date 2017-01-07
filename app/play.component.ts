@@ -10,20 +10,95 @@ import * as _ from "underscore";
 @Component({
   selector: 'play',
   template: `
-    <h1>Play</h1>
-    <p>Play list title: {{playList.title}}</p>
-    <p>Current item: {{playItems[currentPlayItem].title}} </p>
-    <p>action: {{action}}</p>
-    <div>
-    <button (click)="play()">Play</button>
-    </div>
-    <div>
-    <button (click)="answer()">Answer</button>
-    </div>
-    <div>
-    <button (click)="next()">Next</button>
+    <div id="container">
+      <div class="play btitle" (tap)="play()">
+        Play
+      </div>
+      <div class="answer btitle" (tap)="answer()">
+        Answer
+      </div>
+      <div class="next btitle" (tap)="next();play()">
+        Next
+      </div>
     </div>
   `,
+  styles:[`
+
+  /* Mobile = 360 x 640 */
+
+  .btitle {
+      text-align: center;
+      line-height: 3em;
+      font-size: 150%;
+  }
+
+  .btitle:active {
+    border-top-style:solid;
+    border-top-width:10px;
+    border-top-color:#FF4545;
+  }
+
+
+  @media (max-height:639px) and (orientation: portrait){
+    #container {
+      height:460px;
+      width:360px;
+      background-color: #000000;
+    }
+
+    .play, .answer, .next {
+        padding-bottom: 0;
+        height: 29%;
+    }
+
+    .play {
+      background-color: #25E5B5; /* Blue */
+        margin-top: 5px;
+        margin-bottom: 10px;
+     }
+
+    .answer {
+      background-color: #A965CA; /* Purple */
+      margin-bottom: 10px;
+    }
+
+    .next {
+      background-color: #9ACC00; /* Green / lime*/
+      margin-bottom: 0px;
+    }
+  }
+
+  @media (orientation: landscape) {
+    #container {
+      height: 360px;
+      width: 640px
+      background-color: #000000;
+    }
+
+    .play, .answer, .next {
+        float: left;
+        padding-bottom: 0;
+        width: 31%;
+        height:95%;
+    }
+
+    .play {
+        background-color: #25E5B5; /* Blue */
+        margin-right: 10px;
+     }
+
+    .answer {
+        background-color: #A965CA; /* Purple */
+        margin-right: 10px;
+    }
+
+    .next {
+        background-color: #9ACC00; /* Green / lime*/
+        margin-right: 0;
+    }
+  }
+
+`]
 
 })
 export class PlayComponent implements OnInit {
