@@ -6,7 +6,6 @@ import { Catalog }  from './vo/catalog';
 import { PlayList, PlayItem }  from './vo/play-list';
 import { AudioDetails } from './vo/audio-details';
 import * as _ from "underscore";
-// import { BufferLoader } from "./vendorjs/buffer-loader.js";
 
 declare var BufferLoader: any;
 

@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from './catalog.service';
+
+
 @Component({
   selector: 'setup',
   template: `
-      <button (click)="update()">Update</button>
-      <p>width: {{width}}</p>
-      <p>height: {{height}}</p>
-      <p>Awidth: {{aWidth}}</p>
-      <p>Aheight: {{aHeight}}</p>
+      <div>
+        <button (click)="update()">Update</button>
+      </div>
+      
+      <!--
+      <div>
+        <button (click)="hbStart()">Start Heartbeat</button>
+      </div>
+      <div>
+        <button (click)="hbStop()">stop Heartbeat</button>
+      </div>
+      -->
 
     `,
 })
@@ -16,7 +25,7 @@ export class SetupComponent {
   height : number = screen.height;
   aHeight : number = screen.availHeight;
   aWidth : number = screen.availWidth;
-
+  
   constructor(private catalogService: CatalogService) {
 
   }
