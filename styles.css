@@ -16,3 +16,47 @@ body {
   background-color: black;
 
 }
+
+.btitle {
+      text-align: center;
+      line-height: 2em;
+      font-size: 150%;
+ }
+
+.bbutton { /* box button */
+   color:#000000;
+   background-color: #25E5B5; /* Blue */
+   margin-top: 5px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+}
+
+ .btitle:active {
+    border-top-style:solid;
+    border-top-width:10px;
+    border-top-color:#FF4545;
+ }
+
+ .container {
+   /*
+    border-style: solid;
+    border-color: #FF4545; 
+    */
+
+ }
+
+ @media (orientation: portrait){
+    .container {
+      height:90vh;
+      width:100%;
+      background-color: #000000;
+    }
+ }
+
+ @media (orientation: landscape) {
+    .container {
+      height: 85vh;
+      width: 100%;
+      background-color: #000000;
+    }
+ }

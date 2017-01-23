@@ -1,0 +1,103 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<style> 
+
+        body { 
+        background-color: black; 
+            font-size: 1.3em; 
+        } 
+
+        .item {
+            position: relative;
+            text-align:left; 
+            background-color: #25E5B5;            
+            height: 10vh;                
+            padding: 1vh;
+            border-radius: 5px;
+        }
+
+        .item .text {
+            width:80%;
+        }
+
+        .twbutton {
+            position: absolute;
+            top:0;
+            left:80%;
+            width:20%;
+            height:90%;  
+            background:transparent url('images/ic_select_black_24px.svg') center top no-repeat;
+  
+            background-size: 100% 100%;                
+        }
+
+        .twbutton:hover {
+            background:transparent url('images/ic_select-done_black_24px.svg') center top no-repeat;   
+            background-size: 100% 100%;                            
+        }
+
+
+
+
+
+        @media only screen and (orientation: landscape)  { 
+                .item {
+                    width:48%;
+                    margin-bottom: 2vh;
+                }
+
+                .left { 
+                        float:left;
+                        margin-right: 1%; 
+                }                 
+                .right { 
+                        float:right; 
+                }
+
+                .row {  
+                    width:100%;
+                    clear: both; 
+                }   
+       
+        } 
+        @media only screen and (orientation: portrait)  { 
+
+               
+
+              .item {
+                    width:98%;
+                    margin: auto;
+                    margin-bottom: 2vh;
+                }
+
+                
+                
+        } 
+        
+</style> 
+</head> 
+<body> 
+        <div id="list"> 
+                <div class="row"> 
+                        <div id="777" class="item left">
+                            <div class="text">1 Harmonic Intervals in C on Guitar</div>
+                            <div class="twbutton"> </div>
+                                                
+                        </div> 
+                        <div class="item right">
+                            <div class="text"><div class="text">2 Melodic Intervals in C on Guitar</div></div>
+                        </div> 
+                </div> 
+                <div class="row"> 
+                        <div class="item left"><div class="text">3 Simple</div></div> 
+                        <div class="item right"><div class="text">4 Harmonic Intervals in C on Guitar</div></div> 
+                </div> 
+                <div class="row"> 
+                        <div class="item left"><div class="text">5 Harmonic Intervals in C on Mandolin</div></div> 
+                </div> 
+        </div> 
+
+</body> 
+</html> 

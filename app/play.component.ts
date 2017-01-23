@@ -17,7 +17,7 @@ declare var window:any;
 })
 export class PlayComponent implements OnInit, OnDestroy {
   playList: PlayList;
-  playItems : PlayItem[];
+  selectedPlayItems : PlayItem[];
   currentPlayItem : number;
   action: string;
   context: AudioContext;
@@ -41,6 +41,20 @@ export class PlayComponent implements OnInit, OnDestroy {
     this.playList = audioDetails.playList;
     this.preloadedMp3s = audioDetails.loadedAudio;
     this.context = audioDetails.audioContext;
+
+    let selected : string = this.route.snapshot.params['selected'];
+    if (selected && selected.length > 0) {
+       // Expect, selected like "1~3~4~5~" 
+      selected = selected.slice(0,-1);
+      let selectedIndexes =   selected.split("~");
+      this.selectedPlayItems = [];
+      _.each(selectedIndexes, (idx) => {
+          this.selectedPlayItems.push(this.playList.items[+idx]);
+      })
+    } else {
+      this.selectedPlayItems = this.playList.items;
+    }
+
     this.reset();
     this.action = "none!"
     this.intervalHndl = window.setInterval(() => {this.tick()},1000);
@@ -61,25 +75,25 @@ export class PlayComponent implements OnInit, OnDestroy {
 
   play(): void {
     this.action = "play";
-    this.playAudio(this.playItems[this.currentPlayItem].whatMp3.audioIndex);
+    this.playAudio(this.selectedPlayItems[this.currentPlayItem].whatMp3.audioIndex);
     this.counter = 0;
   }
 
   answer(): void {
     this.action = "answer";
-    this.playAudio(this.playItems[this.currentPlayItem].ansMp3.audioIndex);
+    this.playAudio(this.selectedPlayItems[this.currentPlayItem].ansMp3.audioIndex);
     this.counter = 0;
   }
 
   next(): void {
     this.currentPlayItem++;
-    if (this.currentPlayItem >= this.playItems.length ) {
+    if (this.currentPlayItem >= this.selectedPlayItems.length ) {
       this.reset(); // reshuffle & start again.
     }
   }
 
   reset() : void {
-    this.playItems = _.shuffle(this.playList.items) as PlayItem[];
+    this.selectedPlayItems = _.shuffle(this.selectedPlayItems) as PlayItem[];
     this.currentPlayItem = 0;
   }
 

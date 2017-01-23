@@ -1,0 +1,67 @@
+.container-endless {  
+    width:100%;
+    background-color: #000000;
+    margin-top:2vh;
+}
+
+.title {
+    text-align:center;
+    color:#25E5B5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4em;
+    margin-bottom: 4vh;
+    border-bottom-style: solid;
+}
+
+.pitem { 
+    width: 80%;
+    margin: auto;          
+    position: relative;
+    text-align:left;
+}
+
+.pitem .text {
+    padding-top:0%;
+    width:80%;
+    color: #A965CA; /* Purple */
+}
+
+.twcheckbox {
+    position: absolute;
+    top:1.5%;
+    left:80%;
+    width:20%;
+    height:75%;          
+    background-size: 60% 60%;      
+}
+
+.tw-selected {
+    background:transparent url('app/images/ic_check_box_black_24px.svg') center top no-repeat;                                                
+}
+
+.tw-not-selected {
+    background:transparent url('app/images/ic_check_box_outline_blank_black_24px.svg') center top no-repeat;                                                
+}
+
+@media only screen and (orientation: portrait)  { 
+    .pitem { 
+        height: 8vh;
+    }
+}
+@media only screen and (orientation: landscape)  {    
+    .lspace-cell {
+        width:50%;
+        float:left;
+    }
+
+    .pitem { 
+        height: 10vh;
+    }
+
+    .clear {
+        clear: both; 
+    }
+    .bbutton {
+        margin-top:4vh;       
+    }
+}

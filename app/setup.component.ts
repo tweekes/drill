@@ -5,20 +5,11 @@ import { CatalogService } from './catalog.service';
 @Component({
   selector: 'setup',
   template: `
-      <div>
-        <button (click)="update()">Update</button>
-      </div>
-      
-      <!--
-      <div>
-        <button (click)="hbStart()">Start Heartbeat</button>
-      </div>
-      <div>
-        <button (click)="hbStop()">stop Heartbeat</button>
-      </div>
-      -->
+    <div class="container">
+        <div class="bbutton btitle" (tap)="update()">Update </div>
+    </div>
 
-    `,
+    `
 })
 export class SetupComponent {
   width : number = screen.width;

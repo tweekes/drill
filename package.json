@@ -1,7 +1,7 @@
 {
-  "name": "angular-quickstart",
+  "name": "drill",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Drill package.json from the documentation, supplemented with testing support",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
@@ -14,7 +14,7 @@
     "tsc:w": "tsc -w"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tom Weekes",
   "license": "MIT",
   "dependencies": {
     "@angular/common": "~2.4.0",
@@ -25,9 +25,11 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
+    "@types/lodash": "^4.14.50",
     "@types/underscore": "^1.7.36",
     "angular-in-memory-web-api": "~0.2.4",
     "core-js": "^2.4.1",
+    "hammerjs": "^2.0.8",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "underscore": "^1.8.3",

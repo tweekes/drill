@@ -1,42 +1,61 @@
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
-}
-.playlists {
-  margin: 0 0 1em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 18em;
-}
-.playlists li {
-  cursor: pointer;
-  position: relative;
-  left: .5em;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-}
-.playlists li.selected:hover {
-  background-color: #BBD8DC !important;
-  color: white;
-}
-.playlists li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .2em;
-}
+  .twlist {
+    font-size: 1.2em; 
+  }
+  
+  .item {
+      position: relative;
+      text-align:left; 
+      background-color: #25E5B5;                              
+      border-radius: 5px;
+  }
 
-a {
-  text-decoration: none;
-}
+  .item .text {
+      width:80%;
+  }
 
-.playlists .title {
-  -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-  text-indent: 40px;
-}
+  .twbutton {
+      position: absolute;
+      top:13%;
+      left:80%;
+      width:20%;
+      height:75%;  
+      background:transparent url('app/images/ic_select_black_24px.svg') center top no-repeat;
+      background-size: 100% 100%;                
+  }
+
+  .twbutton:hover {
+      background:transparent url('app/images/ic_select-done_black_24px.svg') center top no-repeat;   
+      background-size: 100% 100%;                            
+  }
+
+  @media only screen and (orientation: landscape)  { 
+          .item {
+              height: 15vh; 
+              padding: 2vh;
+              width:47%;
+              margin-bottom: 2vh;
+          }
+
+          .left { 
+                  float:left;
+                  margin-right: 1%; 
+          }                 
+          .right { 
+                  float:right;   
+          }
+
+          .row {  
+              width:100%;
+              clear: both; 
+          }   
+  
+  } 
+  @media only screen and (orientation: portrait)  { 
+        .item {
+              padding: 1vh;
+              height: 10vh; 
+              width:98%;
+              margin: auto;
+              margin-bottom: 2vh;
+          }
+  } 
